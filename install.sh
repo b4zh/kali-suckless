@@ -1,22 +1,20 @@
 #!/bin/sh
 
 ## Cambiando zona horaria
-sudo timedatectl set-timezone Europe/Madrid
+sudo timedatectl set-timezone Europe/Madrid &&
 
 # ---
 
 ## Actualizando el sistema
-sudo apt update -y && sudo apt upgrade -y &&
-sudo apt autoremove -y
+sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 
 # ---
 
 ## Instalando paquetes
 st_dep="libghc-x11-xft-dev"
 dwm_dep="libx11-xcb-dev libxcb-res0-dev"
-programas="gvim htop fastfetch"
-sudo apt remove --purge vim -y
-sudo apt install $st_dep $dwm_dep $programas -y
+programas="htop fastfetch"
+sudo apt install $st_dep $dwm_dep $programas -y &&
 
 # ---
 

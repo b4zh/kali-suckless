@@ -12,9 +12,9 @@ sudo apt autoremove -y
 # ---
 
 ## Instalando paquetes
-st_dep=(libghc-x11-xft-dev)
-dwm_dep=(libx11-xcb-dev libxcb-res0-dev)
-programas=(gvim htop fastfetch)
+st_dep=("libghc-x11-xft-dev")
+dwm_dep=("libx11-xcb-dev" "libxcb-res0-dev")
+programas=("gvim" "htop" "fastfetch")
 sudo apt remove --purge vim -y
 sudo apt install ${st_dep[@]} ${dwm_dep[@]} ${programas[@]} -y
 

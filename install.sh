@@ -15,8 +15,8 @@ sudo apt autoremove -y
 st_dep="libghc-x11-xft-dev"
 dwm_dep="libx11-xcb-dev libxcb-res0-dev"
 programas="gvim htop fastfetch"
-sudo apt remove --purge vim
-sudo apt install $programas
+sudo apt remove --purge vim -y
+sudo apt install "$st_dep" "$dwm_dep" "$programas" -y
 
 # ---
 
@@ -50,7 +50,7 @@ cd ~
 ## ---
 
 ## Estableciendo getty como Gestor de Sesión
-sudo systemctl disable ligthdm.service
+sudo systemctl disable lightdm.service
 sudo systemctl enable getty@tty1.service
 
 ## .xinitrc

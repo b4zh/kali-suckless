@@ -13,14 +13,17 @@ sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 st_dep="libghc-x11-xft-dev"
 dwm_dep="libx11-xcb-dev libxcb-res0-dev"
 dwmblocks_dep="libxcb-util-dev"
-programas="htop fastfetch suckless-tools dunst"
+programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils"
 sudo apt install $st_dep $dwm_dep $dwmblocks_dep $programas -y && 
 
 # ---
 
-## bash default shell
+## bash
 
-chsh -s /usr/bin/bash
+chsh -s /bin/bash
+sudo ln -sf /bin/bash /bin/sh # lo siento posix, tendré que adaptar mis dwmblocks-scripts para ti.
+echo 'export EDITOR=/usr/bin/vim' >> ~/.bashrc
+echo 'export VISUAL=/usr/bin/vim' >> ~/.bashrc
 
 ## ---
 

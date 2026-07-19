@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# deshabilitar el autocompletado
+bleopt complete_auto_complete=
+# deshabilitar los marcadores "[ble: ...]"
+bleopt prompt_eol_mark=''
+bleopt edit_marker=
+bleopt edit_marker_error=
+# habilitar el modo vim
+set -o vi
+
+# configuración del modo vim
+function blerc/vim-mode-hook {
+	# desactivar la información del modo actual
+	bleopt keymap_vi_mode_show=
+
+	# Forma del cursor para cada modo
+	ble-bind -m vi_nmap --cursor 2
+	ble-bind -m vi_imap --cursor 5
+	ble-bind -m vi_omap --cursor 4
+	ble-bind -m vi_xmap --cursor 2
+	ble-bind -m vi_cmap --cursor 0
+
+	# Descartar la línea con C-c
+	ble-bind -m vi_imap -f 'C-c' discard-line
+	ble-bind -m vi_nmap -f 'C-c' discard-line
+
+	# agregando funcionalidades de vim-surround
+	ble-import vim-surround
+}
+blehook/eval-after-load keymap_vi blerc/vim-mode-hook

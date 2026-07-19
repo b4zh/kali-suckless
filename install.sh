@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Definiendo el valor de la ruta en donde se clono el repo kali-suckless (ks)
+path_ks=$(pwd)
+
 ## Cambiando zona horaria
 sudo timedatectl set-timezone Europe/Madrid &&
 
@@ -13,17 +16,21 @@ sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 st_dep="libghc-x11-xft-dev"
 dwm_dep="libx11-xcb-dev libxcb-res0-dev"
 dwmblocks_dep="libxcb-util-dev"
-programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal"
+programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal lf translate-shell lsd feh"
 sudo apt install $st_dep $dwm_dep $dwmblocks_dep $programas -y && 
 
 # ---
 
-## bash
+## bash + ble.sh
 
 chsh -s /bin/bash
-sudo ln -sf /bin/bash /bin/sh # lo siento posix, tendré que adaptar mis dwmblocks-scripts para ti.
-echo 'export EDITOR=/usr/bin/vim' >> ~/.bashrc
-echo 'export VISUAL=/usr/bin/vim' >> ~/.bashrc
+sudo ln -sf /bin/bash /bin/sh # lo siento posix, tendré que adaptar de mejor manera mis dwmblocks-scripts para ti.
+cd $path_ks
+cp -fv ./config/blerc ~/.blerc
+mv -v ~/.bashrc ~/.bashrc.kali.bak && cp -fv ./config/bashrc ~/.bashrc
+cd ~/pkg/ && git clone --recursive https://github.com/akinomyoga/ble.sh.git &&
+cd ~/pkg/ble.sh/ && make install
+cp -fv 
 
 ## ---
 
@@ -48,10 +55,8 @@ git clone https://github.com/UtkarshVerma/dwmblocks-async.git
 git clone https://github.com/b4zh/dwmblocks-scripts.git
 mkdir -p ~/.config/ && cp -rfv ~/pkg/dwmblocks-scripts/sb-scripts/ ~/.config/dwmblocks/
 mkdir -p ~/.local/bin/ && cp -fv ~/pkg/dwmblocks-scripts/otros-scripts/* ~/.local/bin/
-echo 'export PATH=$PATH:~/.local/bin' >> ~/.bashrc
 cp -fv ~/pkg/dwmblocks-scripts/config.h ~/pkg/dwmblocks-async/.
 cd ~/pkg/dwmblocks-async/ && sudo make clean install
-cat ~/pkg/dwmblocks-scripts/colors >> ~/.bashrc
 
 # ---
 
@@ -69,6 +74,11 @@ cd ~
 ## Estableciendo getty como Gestor de Sesión
 sudo systemctl disable lightdm.service
 sudo systemctl enable getty@tty1.service
+
+## ---
+
+## Fondo de pantalla
+
 
 ## ---
 

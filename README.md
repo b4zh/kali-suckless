@@ -1,3 +1,3 @@
 # Kali Suckless
 
-En progreso ...
+Transforma tu Kali Linux en un entorno suckless.

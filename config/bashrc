@@ -1,0 +1,78 @@
+# ble.sh -> Add this lines at the top of .bashrc:
+[[ $- == *i* ]] && source -- ~/.local/share/blesh/ble.sh --attach=none
+
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+#alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+#PS1='🐍\e[38;5;113m [\W]\e[m '
+
+. ~/.git-prompt.sh 
+PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 "  %s")'; PS1='\e[1;38;5;113m[\W]\e[m\e[38;5;81m${PS1_CMD1} '
+
+# me
+
+export PATH=$PATH:~/.local/bin
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
+export DVTM_EDITOR="/usr/bin/vim"
+export DVTM_PAGER="/usr/bin/less"
+
+export C_DISABLED="^c#bbbbbb^"
+export C_RED="^c#ff5f5f^"
+export C_GREEN="^c#8acb69^"
+export C_YELLOW="^c#ffff87^"
+export C_BLUE="^c#00afff^"
+export C_WHITE="^c#ffffff^"
+export C_BLACK="^c#000000^"
+
+#color_test = #55ffaa
+
+#alias cat='bat -pp'
+alias mv='mv -v'
+alias cp='cp -vi'
+alias s='startx'
+alias f='fastfetch'
+alias sb='source ~/.bashrc'
+alias ll='lsd -lF'
+alias la='lsd -aF'
+alias lal='lsd -laF'
+alias l='lsd -F'
+alias ls='lsd -F'
+alias search='yay -Sl | grep -i '
+alias z='zathura'
+alias ter='trans en:es -brief '
+alias start="xdg-open"
+
+#. "$HOME/.cargo/env"
+
+# shell integration: abduco + dvtm
+function main() {
+	abduco -A main dvtm
+}
+
+function ses() {
+	abduco -l
+}
+
+function an() {
+	abduco -A "$1" dvtm
+}
+
+# Tiempo de espera de ESC - ble.sh
+stty time 0 # tiempo de espera en el pseudo-terminal handler, configurado mediante stty
+bind 'set keyseq-timeout 1' # tiempo de espera para Readline en bash
+
+# lf
+source "${XDG_CONFIG_HOME:-$HOME/.config}/lf/lf-shellcd"
+bind '"\C-o":"lf\C-m"'
+
+# translate
+bind '"\C-t":"ter \"$(xclip -out -sel clip)\"\C-m"'
+# ble.sh -> Add this line at the end of .bashrc:
+[[ ! ${BLE_VERSION-} ]] || ble-attach

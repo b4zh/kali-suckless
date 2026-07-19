@@ -77,6 +77,7 @@ sudo systemctl enable getty@tty1.service
 echo "dunst &
 setxkbmap es
 xrandr -s 1920x1080
+dwmblocks &
 exec /usr/local/bin/dwm" > .xinitrc
 chmod +x .xinitrc
 

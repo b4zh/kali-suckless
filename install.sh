@@ -9,14 +9,20 @@ sudo timedatectl set-timezone Europe/Madrid &&
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 
 # ---
-
 ## Instalando paquetes
 st_dep="libghc-x11-xft-dev"
 dwm_dep="libx11-xcb-dev libxcb-res0-dev"
-programas="htop fastfetch"
-sudo apt install $st_dep $dwm_dep $programas -y &&
+dwmblocks_dep="libxcb-util-dev"
+programas="htop fastfetch suckless-tools dunst"
+sudo apt install $st_dep $dwm_dep $dwmblocks_dep $programas -y && 
 
 # ---
+
+## bash default shell
+
+chsh -s /usr/bin/bash
+
+## ---
 
 ## Descargando e Instalando entorno suckless
 
@@ -25,14 +31,24 @@ mkdir -p ~/pkg/
 ### st
 cd ~/pkg/
 git clone https://github.com/b4zh/st-0.9.3.git
-cd ~/pkg/st-0.9.3/
-sudo make clean install
+cd ~/pkg/st-0.9.3/ && sudo make clean install
 
 ### dwm
 cd ~/pkg/
 git clone https://github.com/b4zh/dwm-6.8.git
-cd ~/pkg/dwm-6.8/
-sudo make clean install
+cd ~/pkg/dwm-6.8/ && sudo make clean install
+
+### dwmblocks-async
+
+cd ~/pkg/
+git clone https://github.com/UtkarshVerma/dwmblocks-async.git
+git clone https://github.com/b4zh/dwmblocks-scripts.git
+mkdir -p ~/.config/ && cp -rfv ~/pkg/dwmblocks-scripts/sb-scripts/ ~/.config/dwmblocks/
+mkdir -p ~/.local/bin/ && cp -fv ~/pkg/dwmblocks-scripts/otros-scripts/* ~/.local/bin/
+echo 'export PATH=$PATH:~/.local/bin' >> ~/.bashrc
+cp -fv ~/pkg/dwmblocks-scripts/config.h ~/pkg/dwmblocks-async/.
+cd ~/pkg/dwmblocks-async/ && sudo make clean install
+cat ~/pkg/dwmblocks-scripts/colors >> ~/.bashrc
 
 # ---
 
@@ -51,12 +67,17 @@ cd ~
 sudo systemctl disable lightdm.service
 sudo systemctl enable getty@tty1.service
 
+## ---
+
 ## .xinitrc
 
-echo "setxkbmap es
+echo "dunst &
+setxkbmap es
 xrandr -s 1920x1080
 exec /usr/local/bin/dwm" > .xinitrc
 chmod +x .xinitrc
+
+## ---
 
 # Configurando idioma del sistema
 sudo bash -c "echo 'LANG=es_ES.UTF-8' > /etc/locale.conf"

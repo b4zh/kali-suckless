@@ -16,7 +16,7 @@ sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 st_dep="libghc-x11-xft-dev"
 dwm_dep="libx11-xcb-dev libxcb-res0-dev"
 dwmblocks_dep="libxcb-util-dev"
-programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal lf translate-shell lsd feh"
+programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal lf translate-shell lsd feh zathura"
 sudo apt install $st_dep $dwm_dep $dwmblocks_dep $programas -y && 
 
 # ---
@@ -36,7 +36,7 @@ cd ~/pkg/ble.sh/ && make install
 
 ## directorios importantes
 cd $path_ks
-mkdir -p ~/.config/ && cp -fv ./config/* ~/.config/
+mkdir -p ~/.config/ && cp -rfv ./config/* ~/.config/
 mkdir -p ~/.local/bin/ && cp -fv ./bin/* ~/.local/bin/
 
 ## --

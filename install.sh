@@ -28,15 +28,13 @@ sudo ln -sf /bin/bash /bin/sh # lo siento posix, tendré que adaptar de mejor ma
 cd $path_ks
 cp -fv ./config/blerc ~/.blerc
 mv -v ~/.bashrc ~/.bashrc.kali.bak && cp -fv ./config/bashrc ~/.bashrc
-cd ~/pkg/ && git clone --recursive https://github.com/akinomyoga/ble.sh.git &&
+mkdir -p ~/pkg/
+cd ~/pkg/ && git clone --recursive https://github.com/akinomyoga/ble.sh.git
 cd ~/pkg/ble.sh/ && make install
-cp -fv 
 
 ## ---
 
 ## Descargando e Instalando entorno suckless
-
-mkdir -p ~/pkg/
 
 ### st
 cd ~/pkg/

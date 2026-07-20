@@ -28,8 +28,9 @@ sudo ln -sf /bin/bash /bin/sh # lo siento posix, tendré que adaptar de mejor ma
 cd $path_ks
 cp -fv ./config/blerc ~/.blerc
 mv -v ~/.bashrc ~/.bashrc.kali.bak && cp -fv ./config/bashrc ~/.bashrc
+cp -fv ./config/git-prompt.sh ~/.git-prompt.sh
 mkdir -p ~/pkg/
-cd ~/pkg/ && git clone --recursive https://github.com/akinomyoga/ble.sh.git
+cd ~/pkg/ && git clone --recursive https://github.com/akinomyoga/ble.sh.git &&
 cd ~/pkg/ble.sh/ && make install
 
 ## ---

@@ -22,18 +22,24 @@ sudo apt install $st_dep $dwm_dep $dwmblocks_dep $programas -y &&
 # ---
 
 ## bash + ble.sh
-
 chsh -s /bin/bash
 sudo ln -sf /bin/bash /bin/sh # lo siento posix, tendré que adaptar de mejor manera mis dwmblocks-scripts para ti.
 cd $path_ks
-cp -fv ./config/blerc ~/.blerc
-mv -v ~/.bashrc ~/.bashrc.kali.bak && cp -fv ./config/bashrc ~/.bashrc
-cp -fv ./config/git-prompt.sh ~/.git-prompt.sh
+cp -fv ./bash-blesh/blerc ~/.blerc
+mv -v ~/.bashrc ~/.bashrc.kali.bak && cp -fv ./bash-blesh/bashrc ~/.bashrc
+cp -fv ./bash-blesh/git-prompt.sh ~/.git-prompt.sh
 mkdir -p ~/pkg/
 cd ~/pkg/ && git clone --recursive https://github.com/akinomyoga/ble.sh.git &&
 cd ~/pkg/ble.sh/ && make install
 
 ## ---
+
+## directorios importantes
+cd $path_ks
+mkdir -p ~/.config/ && cp -fv ./config/* ~/.config/
+mkdir -p ~/.local/bin/ && cp -fv ./bin/* ~/.local/bin/
+
+## --
 
 ## Descargando e Instalando entorno suckless
 
@@ -48,12 +54,11 @@ git clone https://github.com/b4zh/dwm-6.8.git
 cd ~/pkg/dwm-6.8/ && sudo make clean install
 
 ### dwmblocks-async
-
 cd ~/pkg/
 git clone https://github.com/UtkarshVerma/dwmblocks-async.git
 git clone https://github.com/b4zh/dwmblocks-scripts.git
-mkdir -p ~/.config/ && cp -rfv ~/pkg/dwmblocks-scripts/sb-scripts/ ~/.config/dwmblocks/
-mkdir -p ~/.local/bin/ && cp -fv ~/pkg/dwmblocks-scripts/otros-scripts/* ~/.local/bin/
+cp -rfv ~/pkg/dwmblocks-scripts/sb-scripts/ ~/.config/dwmblocks/
+cp -fv ~/pkg/dwmblocks-scripts/otros-scripts/* ~/.local/bin/
 cp -fv ~/pkg/dwmblocks-scripts/config.h ~/pkg/dwmblocks-async/.
 cd ~/pkg/dwmblocks-async/ && sudo make clean install
 
@@ -82,7 +87,6 @@ sudo systemctl enable getty@tty1.service
 ## ---
 
 ## .xinitrc
-
 echo "dunst &
 setxkbmap es
 xrandr -s 1920x1080

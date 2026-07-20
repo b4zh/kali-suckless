@@ -1,0 +1,23 @@
+set shell bash
+set shellopts '-eu'
+set ifs "\n"
+set drawbox
+set icons
+set sortby time
+set info time
+set previewer "~/.config/lf/lf-ueberzug-previewer"
+set cleaner "~/.config/lf/lf-ueberzug-cleaner"
+
+map <enter> shell
+map ` !true
+map x $$f
+map c quit
+
+# --- begin lfrc-shellcd
+map q quitcd
+cmd quitcd ${{
+	echo "$PWD" > "$LF_SHELLCD_TEMPDIR/lastdir"
+	echo "1" > "$LF_SHELLCD_TEMPDIR/changecwd"
+	lf -remote "send $id quit"
+}}
+# --- end lfrc-shellcd

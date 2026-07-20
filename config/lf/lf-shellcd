@@ -1,0 +1,12 @@
+lfcd() {
+	LF_SHELLCD_TEMPDIR="$(mktemp -d -t lf-shellcd-XXXXXX)"
+	export LF_SHELLCD_TEMPDIR
+	lfub -command "source '${XDG_CONFIG_HOME:-$HOME/.config}/lf/lfrc-shellcd'" "$@"
+	if [ -e "$LF_SHELLCD_TEMPDIR/changecwd" ] && [ -e "$LF_SHELLCD_TEMPDIR/lastdir" ];then
+		dir=$(cat "$LF_SHELLCD_TEMPDIR/lastdir")
+		cd $dir
+	fi
+	rm -rf "$LF_SHELLCD_TEMPDIR"
+	unset LF_SHELLCD_TEMPDIR
+}
+alias lf=lfcd

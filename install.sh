@@ -114,4 +114,4 @@ for i in $(seq 1 $num_dirs); do
 	dir2=$(printf "%s\n%s" "$dirs_en" "$dirs_es" | cut -d" " -f$i | xargs | awk '{print $2}')
 	mv $dir1 "$dir2"
 done;
-rmdir "$dirs_en_rm"
+rmdir $dirs_en_rm

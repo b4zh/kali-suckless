@@ -88,8 +88,8 @@ echo "dunst &
 setxkbmap es
 xrandr -s 1920x1080
 dwmblocks &
-exec /usr/local/bin/dwm" > .xinitrc
-chmod +x .xinitrc
+exec /usr/local/bin/dwm" > ~/.xinitrc
+chmod +x ~/.xinitrc
 
 ## ---
 
@@ -100,7 +100,8 @@ sudo bash -c "echo 'es_ES.UTF-8 UTF-8' > /etc/locale.gen"
 sudo locale-gen
 
 ### Renombrando directorios
-cd $path_ks
+cd ~
+dirs_en_rm=$(grep "^XDG" ~/.config/user-dirs.dirs | cut -d"/" -f2 | sed 's/"//g' | xargs)
 dirs_en=$(grep "^XDG" ~/.config/user-dirs.dirs | cut -d"/" -f2 | sed 's/"/\/*/g' | xargs)
 num_dirs=$(echo $dirs_en | wc -w)
 LC_ALL=es_ES.UTF-8 xdg-user-dirs-update --force
@@ -113,4 +114,4 @@ for i in $(seq 1 $num_dirs); do
 	dir2=$(printf "%s\n%s" "$dirs_en" "$dirs_es" | cut -d" " -f$i | xargs | awk '{print $2}')
 	mv $dir1 "$dir2"
 done;
-rmdir "$dirs_en"
+rmdir "$dirs_en_rm"

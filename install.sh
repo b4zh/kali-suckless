@@ -3,8 +3,7 @@
 # Definiendo el valor de la ruta en donde se clono el repo kali-suckless (ks)
 path_ks=$(pwd)
 
-## Cambiando zona horaria
-sudo timedatectl set-timezone Europe/Madrid &&
+## Cambiando zona horaria sudo timedatectl set-timezone Europe/Madrid &&
 
 # ---
 
@@ -101,3 +100,11 @@ sudo bash -c "echo 'LANG=es_ES.UTF-8' > /etc/locale.conf"
 sudo bash -c "echo 'KEYMAP=es' > /etc/vconsole.conf"
 sudo bash -c "echo 'es_ES.UTF-8 UTF-8' > /etc/locale.gen"
 sudo locale-gen
+
+### Renombrando directorios
+dirs_en=$(grep "^XDG" ~/.config/user-dirs.dirs | cut -d"/" -f2 | sed 's/"//g' | xargs)
+num_dirs=$(echo $dirs_en | wc -w)
+LC_ALL=es_ES.UTF-8 xdg-user-dirs-update --force
+dirs_es=$(grep "^XDG" ~/.config/user-dirs.dirs | cut -d"/" -f2 | sed 's/"//g' | xargs)
+
+for i in $(seq 1 $num_dirs); do printf "%s\n%s" "$dirs_en" "$dirs_es" | cut -d" " -f$i | xargs mv; done;

@@ -108,7 +108,7 @@ dir1=
 dir2=
 
 for i in $(seq 1 $num_dirs); do
-	dir1=$(printf "%s\n%s" "$dirs_en" "$dirs_es" | cut -d" " -f$i | xargs | awk '{print $1}')
-	dir2=$(printf "%s\n%s" "$dirs_en" "$dirs_es" | cut -d" " -f$i | xargs | awk '{print $2}')
-	rmdir ~/$dir1 > /dev/null 2>&1 || mv -v ~/$dir1/* "~/$dir2" && rmdir ~/$dir1
+	dir1=$(echo -e "$dirs_en\n$dirs_es" | cut -d" " -f$i | xargs | awk '{print $1}')
+	dir2=$(echo -e "$dirs_en\n$dirs_es" | cut -d" " -f$i | xargs | awk '{print $2}')
+	rmdir ~/$dir1 > /dev/null 2>&1 || (mv -v ~/$dir1/* ~/$dir2 && rmdir ~/$dir1)
 done;

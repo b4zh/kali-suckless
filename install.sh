@@ -70,8 +70,6 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsM
 unzip JetBrainsMono.zip
 fc-cache
 
-cd ~
-
 ## ---
 
 ## Estableciendo getty como Gestor de Sesión
@@ -102,9 +100,17 @@ sudo bash -c "echo 'es_ES.UTF-8 UTF-8' > /etc/locale.gen"
 sudo locale-gen
 
 ### Renombrando directorios
-dirs_en=$(grep "^XDG" ~/.config/user-dirs.dirs | cut -d"/" -f2 | sed 's/"//g' | xargs)
+cd $path_ks
+dirs_en=$(grep "^XDG" ~/.config/user-dirs.dirs | cut -d"/" -f2 | sed 's/"/\/*/g' | xargs)
 num_dirs=$(echo $dirs_en | wc -w)
 LC_ALL=es_ES.UTF-8 xdg-user-dirs-update --force
 dirs_es=$(grep "^XDG" ~/.config/user-dirs.dirs | cut -d"/" -f2 | sed 's/"//g' | xargs)
+dir1=
+dir2=
 
-for i in $(seq 1 $num_dirs); do printf "%s\n%s" "$dirs_en" "$dirs_es" | cut -d" " -f$i | xargs mv; done;
+for i in $(seq 1 $num_dirs); do
+	dir1=$(printf "%s\n%s" "$dirs_en" "$dirs_es" | cut -d" " -f$i | xargs | awk '{print $1}')
+	dir2=$(printf "%s\n%s" "$dirs_en" "$dirs_es" | cut -d" " -f$i | xargs | awk '{print $2}')
+	mv $dir1 "$dir2"
+done;
+rmdir "$dirs_en"

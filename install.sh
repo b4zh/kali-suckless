@@ -35,14 +35,14 @@ cd ~/pkg/ble.sh/ && make install
 ## vim
 cp -v $path_ks/vimconf/vimrc ~/.vimrc
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-cp -fv $path_ks/vimconf/vim/* ~/.vim/
+cp -rfv $path_ks/vimconf/vim/* ~/.vim/
 
 ## ---
 
 ## directorios importantes
 cd $path_ks
 mkdir -p ~/.config/ && cp -rfv ./config/* ~/.config/
-mkdir -p ~/.local/bin/ && cp -fv ./bin/* ~/.local/bin/
+mkdir -p ~/.local/bin/ && cp -rfv ./bin/* ~/.local/bin/
 
 ## --
 

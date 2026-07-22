@@ -1,4 +1,6 @@
-### Renombrando directorios
+## Renombrando directorios
+path_ks=$(pwd)
+
 dirs_en=$(grep "^XDG" ~/.config/user-dirs.dirs | cut -d"/" -f2 | sed 's/"//g' | xargs)
 num_dirs=$(echo $dirs_en | wc -w)
 LC_ALL=es_ES.UTF-8 xdg-user-dirs-update --force

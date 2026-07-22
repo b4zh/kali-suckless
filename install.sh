@@ -80,6 +80,7 @@ sudo systemctl enable getty@tty1.service
 
 ## Fondo de pantalla
 
+feh --bg-scale ~/.config/wallpapers/Kali-1.png
 
 ## ---
 
@@ -87,6 +88,7 @@ sudo systemctl enable getty@tty1.service
 echo "dunst &
 setxkbmap es
 xrandr -s 1920x1080
+~/.fehbg
 dwmblocks &
 exec /usr/local/bin/dwm" > ~/.xinitrc
 chmod +x ~/.xinitrc

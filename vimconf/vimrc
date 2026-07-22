@@ -1,0 +1,62 @@
+" __     ___           ____   ____ 
+" \ \   / (_)_ __ ___ |  _ \ / ___|
+"  \ \ / /| | '_ ` _ \| |_) | |    
+"   \ V / | | | | | | |  _ <| |___ 
+"    \_/  |_|_| |_| |_|_| \_\\____|
+
+" VIM-PLUG
+so ~/.vim/plugins.vim
+
+" Colorscheme
+colorscheme tango
+syntax on
+"set background=dark
+"highlight Normal ctermfg=NONE ctermbg=NONE
+
+" Opciones
+set nocompatible
+set mouse=a
+set number relativenumber
+set clipboard=unnamedplus
+set encoding=utf-8
+set incsearch
+set t_Co=256
+
+"" Tabulación - Identación
+set shiftwidth=4
+set tabstop=4
+"set expandtab
+set autoindent
+filetype indent on
+
+"" FileType
+filetype on
+
+" Configuración de teclas
+let mapleader = " "
+map <leader>r :so ~/.vimrc<CR>
+
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :q!<CR>
+nnoremap <leader>f :set hlsearch<CR>
+nnoremap <leader>F :set nohlsearch<CR>
+nnoremap <leader>e !!$SHELL<CR>
+nnoremap <F5> :setlocal spell! spelllang=es<CR>
+map ñ [s
+map <leader>z z=
+
+"" Tabs
+nnoremap Ñ  :tabnew<CR>
+nnoremap <Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprev<CR>
+nnoremap <c-1> :tabfirst<CR>
+nnoremap <c-0> :tablast<CR>
+nnoremap <c-n> :tabnew 
+
+"" Goyo Mode
+nnoremap <leader>g :Goyo<CR>
+
+inoremap ( ()<Esc>i
+inoremap { {}<Esc>i
+inoremap [ []<Esc>i

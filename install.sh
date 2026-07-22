@@ -9,13 +9,12 @@ path_ks=$(pwd)
 
 ## Actualizando el sistema
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
-
 # ---
 ## Instalando paquetes
 st_dep="libghc-x11-xft-dev"
 dwm_dep="libx11-xcb-dev libxcb-res0-dev"
 dwmblocks_dep="libxcb-util-dev"
-programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal lf translate-shell lsd feh zathura"
+programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal lf translate-shell lsd feh zathura picom vim-gui-common"
 sudo apt install $st_dep $dwm_dep $dwmblocks_dep $programas -y && 
 
 # ---
@@ -30,6 +29,13 @@ cp -fv ./bash-blesh/git-prompt.sh ~/.git-prompt.sh
 mkdir -p ~/pkg/
 cd ~/pkg/ && git clone --recursive https://github.com/akinomyoga/ble.sh.git &&
 cd ~/pkg/ble.sh/ && make install
+
+## ---
+
+## vim
+cp -v $path_ks/vimconf/vimrc ~/.vimrc
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+cp -fv $path_ks/vimconf/vim/* ~/.vim/
 
 ## ---
 
@@ -89,6 +95,7 @@ echo "dunst &
 setxkbmap es
 xrandr -s 1920x1080
 ~/.fehbg
+pkill picom; picom -b &
 dwmblocks &
 exec /usr/local/bin/dwm" > ~/.xinitrc
 chmod +x ~/.xinitrc

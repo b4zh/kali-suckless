@@ -4,6 +4,7 @@
 path_ks=$(pwd)
 
 ## Cambiando zona horaria sudo timedatectl set-timezone Europe/Madrid &&
+sudo timedatectl set-timezone Europe/Madrid
 
 # ---
 

@@ -15,7 +15,7 @@ sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 st_dep="libghc-x11-xft-dev"
 dwm_dep="libx11-xcb-dev libxcb-res0-dev"
 dwmblocks_dep="libxcb-util-dev"
-programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal lf translate-shell lsd feh zathura picom vim-gui-common"
+programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal lf translate-shell lsd feh zathura xcompmgr vim-gui-common"
 sudo apt install $st_dep $dwm_dep $dwmblocks_dep $programas -y && 
 
 # ---
@@ -96,7 +96,7 @@ echo "dunst &
 setxkbmap es
 xrandr -s 1920x1080
 ~/.fehbg
-pkill picom; picom -b &
+xcompmgr -n &
 dwmblocks &
 exec /usr/local/bin/dwm" > ~/.xinitrc
 chmod +x ~/.xinitrc

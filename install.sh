@@ -31,6 +31,11 @@ mkdir -p ~/pkg/
 cd ~/pkg/ && git clone --recursive https://github.com/akinomyoga/ble.sh.git &&
 cd ~/pkg/ble.sh/ && make install
 
+touch ~/.bash_profile
+echo "if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ] && [ "$(tty)" = "/dev/tty1" ]; then
+	exec startx
+fi" >> ~/.bash_profile
+
 ## ---
 
 ## vim
@@ -82,6 +87,9 @@ fc-cache
 ## Estableciendo getty como Gestor de Sesión
 sudo systemctl disable lightdm.service
 sudo systemctl enable getty@tty1.service
+
+sudo mv -fv /etc/issue /etc/issue.bak
+sudo cp -fv $path_ks/issue /etc/issue
 
 ## ---
 

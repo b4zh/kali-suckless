@@ -31,11 +31,8 @@ mkdir -p ~/pkg/
 cd ~/pkg/ && git clone --recursive https://github.com/akinomyoga/ble.sh.git &&
 cd ~/pkg/ble.sh/ && make install
 
-touch ~/.bash_profile
-echo "if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ] && [ "$(tty)" = "/dev/tty1" ]; then
-	exec startx
-fi" >> ~/.bash_profile
-
+touch ~/.profile
+cat $path_ks/bash-blesh/bash_profile >> ~/.profile
 ## ---
 
 ## vim

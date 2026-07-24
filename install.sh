@@ -15,7 +15,7 @@ sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 st_dep="libghc-x11-xft-dev"
 dwm_dep="libx11-xcb-dev libxcb-res0-dev"
 dwmblocks_dep="libxcb-util-dev"
-programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal lf translate-shell lsd feh zathura xcompmgr vim-gui-common"
+programas="htop fastfetch suckless-tools dunst bc pamixer pulsemixer pulseaudio-utils ncal lf translate-shell lsd feh zathura xcompmgr vim-gui-common abduco"
 sudo apt install $st_dep $dwm_dep $dwmblocks_dep $programas -y && 
 
 # ---
@@ -69,6 +69,11 @@ cp -rfv ~/pkg/dwmblocks-scripts/sb-scripts/ ~/.config/dwmblocks/
 cp -fv ~/pkg/dwmblocks-scripts/otros-scripts/* ~/.local/bin/
 cp -fv ~/pkg/dwmblocks-scripts/config.h ~/pkg/dwmblocks-async/.
 cd ~/pkg/dwmblocks-async/ && sudo make clean install
+
+### dvtm
+cp -rfv $path_ks/dvtm-0.15/ ~/pkg/
+cd ~/pkg/dvtm-0.15/
+sudo make install
 
 # ---
 

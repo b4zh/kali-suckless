@@ -10,3 +10,5 @@ Shell: bash + ble.sh
 Multiplexor: dvtm
 Gestor de sesiones: abduco
 Compositor: xcompmgr
+
+
